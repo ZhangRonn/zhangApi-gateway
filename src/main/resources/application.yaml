@@ -1,0 +1,29 @@
+spring:
+  cloud:
+    gateway:
+        routes:
+          - id: api_route
+            uri: http://localhost:8103
+            predicates:
+              - Path=/api/**
+  application:
+    name: zhangapi-gateway
+dubbo:
+  application:
+    name: dubbo-springboot-demo-consumer
+  qos:
+    port: 22223
+  protocol:
+    name: dubbo
+  registry:
+    id: nacos-registry
+    #    address: nacos://172.26.133.243:8848
+    address: nacos://localhost:8848
+server:
+  port: 8104
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: trace
